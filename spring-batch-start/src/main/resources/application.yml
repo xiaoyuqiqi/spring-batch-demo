@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.137:3306/springbatch
+    username: root
+    password: 123456
+
+  batch:
+    job:
+      # 默认为true，程序启动时Job会自动执行；false，需要手动启动任务（jobLaucher.run）
+      enabled: true
+      # spring batch默认情况下需要在数据库中创建元数据表，
+      # always：检查表存是否存在，不存在自动创建；never：不会自动创建，表不存在，则报错;
+      names: splitJob01
+    initialize-schema: never
+    metrics:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: batch,metrics,health,info
